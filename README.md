@@ -20,7 +20,7 @@ It performs intelligent payload injection, response analysis, and reflection det
 ---
 
 ## 📂 Project Structure
-
+```
 xss-obliterator/
 │
 ├── main.py # Entry point
@@ -30,26 +30,21 @@ xss-obliterator/
 ├── requirements.txt # Python dependencies
 └── README.md
 
-yaml
-Copy code
-
+```
 ---
 
 ## 🛠️ Installation
 
 ### 1️⃣ Clone the repository
-git clone https://github.com/yourusername/xss-obliterator.git
+```git clone https://github.com/yourusername/xss-obliterator.git
 cd xss-obliterator
+```
 
-shell
-Copy code
+
 
 ### 2️⃣ Install dependencies
-pip install -r requirements.txt
-
-yaml
-Copy code
-
+```pip install -r requirements.txt
+```
 ---
 
 ## ▶️ Usage
