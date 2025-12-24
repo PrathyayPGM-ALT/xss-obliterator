@@ -133,7 +133,7 @@ If you find this project useful:
 
 ## 🧑‍💻 Author
 
-Built with ❤️ by **Your Name**  
+Built with ❤️ by **Prathyay**  
 Security • Python • Offensive Tooling
 
 ---
