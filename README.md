@@ -130,4 +130,4 @@ Security • Python • Offensive Tooling
 
 ## 📜 License
 
-This project is licensed under the **There's no liscense** liscence.
+This project is licensed under the **There's no license** licence.
