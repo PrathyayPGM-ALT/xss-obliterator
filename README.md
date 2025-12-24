@@ -52,7 +52,7 @@ pip install -r requirements.txt
 ```
 pip3 install -r requirements.txt
 ```
->_ Don't for get to ```playwright install chromium``` as well, otherwise the --verify tag won't work!
+>Don't for get to ```playwright install chromium``` as well, otherwise the --verify tag won't work!
 ---
 
 ## ▶️ Usage
