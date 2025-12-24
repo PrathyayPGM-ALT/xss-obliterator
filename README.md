@@ -45,6 +45,7 @@ cd xss-obliterator
 ### 2️⃣ Install dependencies
 ```
 pip install -r requirements.txt
+
 ```
 ---
 
