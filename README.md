@@ -81,17 +81,6 @@ Copy code
 <img width="1676" height="683" alt="image" src="https://github.com/user-attachments/assets/c432c0b4-36a8-453b-8428-b1199f374b07" />
 
 
-
-## 🧪 Example Output
-
-[+] Testing parameter: search
-[!] Potential XSS detected!
-Payload: <script>alert(1)</script>
-Reflected in response
-
-yaml
-Copy code
-
 ---
 
 ## 🔐 Legal Disclaimer
