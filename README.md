@@ -43,24 +43,29 @@ cd xss-obliterator
 
 
 ### 2️⃣ Install dependencies
+#### For Windows
 ```
 pip install -r requirements.txt
-
 ```
+
+#### For Mac
+```
+pip3 install -r requirements.txt
+```
+>_ Don't for get to ```playwright install chromium``` as well, otherwise the --verify tag won't work!
 ---
 
 ## ▶️ Usage
 
 ### Basic scan
+#### For Windows 
 ```
-python main.py -u https://example.com
-
-
+python main.py -u https://example.com --verify
 ```
-### Scan a test target (OWASP Juice Shop)
-```
-python main.py -u https://owasp.org/www-project-juice-shop/
 
+#### For Mac
+```
+python3 main.py -u https://example.com --verify
 ```
 ---
 
