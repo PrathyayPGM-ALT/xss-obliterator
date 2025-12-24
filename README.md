@@ -77,6 +77,9 @@ Copy code
 | `-o`   | Output results to a file (optional) |
 
 ---
+## Screenshots
+<img width="1105" height="633" alt="image" src="https://github.com/user-attachments/assets/2fd4237f-ec62-4c37-968c-f966fbad435f" />
+
 
 ## 🧪 Example Output
 
