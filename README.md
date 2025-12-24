@@ -43,23 +43,23 @@ cd xss-obliterator
 
 
 ### 2️⃣ Install dependencies
-```pip install -r requirements.txt
+```
+pip install -r requirements.txt
 ```
 ---
 
 ## ▶️ Usage
 
 ### Basic scan
-```python main.py -u https://example.com
+```
+python main.py -u https://example.com
 
-graphql
-Copy code
+
 ```
 ### Scan a test target (OWASP Juice Shop)
-```python main.py -u https://owasp.org/www-project-juice-shop/
+```
+python main.py -u https://owasp.org/www-project-juice-shop/
 
-yaml
-Copy code
 ```
 ---
 
