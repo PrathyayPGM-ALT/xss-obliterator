@@ -2,33 +2,33 @@ SOURCES = [
     "location",
     "window.location",
     "document.location",
-    "document.URL",
-    "URLSearchParams",
     "location.search",
-    "location.hash"
+    "location.hash",
+    "URLSearchParams"
 ]
-
 
 SINKS = [
     "innerHTML",
     "outerHTML",
-    "innerText",
     "document.write",
     "eval(",
     "setTimeout(",
     "setInterval(",
-    "insertAdjacentHTML",
-    "location.href",
-    ".src =",
-    ".href ="
+    "insertAdjacentHTML"
 ]
 
+MAX_DISTANCE = 300  # characters
 
-def analyze(js_code):
+def analyze(js_code: str):
     findings = []
+
     for src in SOURCES:
-        if src in js_code:
-            for sink in SINKS:
-                if sink in js_code:
+        for sink in SINKS:
+            src_index = js_code.find(src)
+            sink_index = js_code.find(sink)
+
+            if src_index != -1 and sink_index != -1:
+                if abs(src_index - sink_index) <= MAX_DISTANCE:
                     findings.append((src, sink))
+
     return findings
