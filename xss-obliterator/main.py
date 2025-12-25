@@ -1,4 +1,3 @@
-# main.py
 import argparse
 from banner import show_banner
 from js_fetcher import fetch_js
@@ -9,7 +8,7 @@ HELP_EPILOG = """
 Tags explained:
   [DOM-XSS]        Potential DOM-based XSS source → sink flow
   [🔥] EXPLOITABLE  XSS payload executed successfully
-  [✓] SAFE         No exploitable XSS found
+  [⚠️] POSSIBLE     Dangerous pattern found, execution not confirmed
   [i] INFO         Informational message
   [!] WARNING      Partial failure (timeouts, blocked fetches)
 
@@ -27,17 +26,8 @@ def main():
         epilog=HELP_EPILOG
     )
 
-    parser.add_argument(
-        "-u", "--url",
-        required=True,
-        help="Target URL to scan"
-    )
-
-    parser.add_argument(
-        "--verify",
-        action="store_true",
-        help="Verify exploitability using a real browser"
-    )
+    parser.add_argument("-u", "--url", required=True, help="Target URL")
+    parser.add_argument("--verify", action="store_true", help="Verify exploitability")
 
     args = parser.parse_args()
 
@@ -47,18 +37,17 @@ def main():
     print(f"[+] JavaScript blocks found: {len(scripts)}")
 
     if not scripts:
-        print("[✓] SAFE — no JavaScript to analyze.")
+        print("[i] INFO — no JavaScript found to analyze.")
         return
 
     findings = set()
 
     for js in scripts:
-        results = analyze(js)
-        for src, sink in results:
+        for src, sink in analyze(js):
             findings.add((src, sink))
 
     if not findings:
-        print("[✓] SAFE — no DOM XSS vulnerabilities found.")
+        print("[i] INFO — no obvious DOM XSS patterns found.")
         return
 
     print("\n[!] Potential DOM XSS patterns detected:")
@@ -72,9 +61,10 @@ def main():
         if exploitable:
             print("[🔥] EXPLOITABLE — DOM XSS confirmed")
         else:
-            print("[✓] SAFE — not exploitable under tested conditions")
+            print("[⚠️] POSSIBLE — dangerous patterns found, execution not confirmed")
+            print("    Manual testing recommended.")
     else:
-        print("\n[i] INFO — use --verify to confirm exploitability")
+        print("\n[i] INFO — use --verify to attempt runtime confirmation")
 
     print("\n[✓] Scan completed.")
 
