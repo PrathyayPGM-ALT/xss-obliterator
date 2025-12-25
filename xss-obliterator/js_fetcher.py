@@ -1,36 +1,34 @@
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+SOURCES = [
+    "location",
+    "window.location",
+    "document.location",
+    "location.search",
+    "location.hash",
+    "URLSearchParams"
+]
 
-HEADERS = {
-    "User-Agent": "xss-obliterator/1.0"
-}
+SINKS = [
+    "innerHTML",
+    "outerHTML",
+    "document.write",
+    "eval(",
+    "setTimeout(",
+    "setInterval(",
+    "insertAdjacentHTML"
+]
 
-def fetch_js(url):
-    scripts = []
+MAX_DISTANCE = 300  # characters
 
-    try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
-        r.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        print(f"[!] Failed to fetch page: {e}")
-        return scripts   # return EMPTY, not crash
+def analyze(js_code: str):
+    findings = []
 
-    soup = BeautifulSoup(r.text, "html.parser")
+    for src in SOURCES:
+        for sink in SINKS:
+            src_index = js_code.find(src)
+            sink_index = js_code.find(sink)
 
-    for script in soup.find_all("script"):
-        # Inline JS
-        if script.string:
-            scripts.append(script.string)
+            if src_index != -1 and sink_index != -1:
+                if abs(src_index - sink_index) <= MAX_DISTANCE:
+                    findings.append((src, sink))
 
-        # External JS
-        if script.get("src"):
-            js_url = urljoin(url, script["src"])
-            try:
-                js = requests.get(js_url, headers=HEADERS, timeout=10).text
-                scripts.append(js)
-            except requests.exceptions.RequestException:
-                print(f"[!] Skipping JS (timeout): {js_url}")
-                continue
-
-    return scripts
+    return findings
